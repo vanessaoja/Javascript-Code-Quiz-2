@@ -13,10 +13,29 @@ body {
 }
 .button {
     padding: 10px;
-	width: 15vw;
+	width: 60vw;
 	height: 10vh;
 	font-size: larger;
 	background-color: rgb(1, 7, 123);
 	border-radius: 25%;
+    border-style: double;
+    border-color: #ed33bf;
     color:#ed33bf;
+}
+.option:hover{
+	background-color: rgb(87, 229, 239);
+}
+.start-button, .next-button {
+    width: 10vw;
+    border-radius: 10%;
+	height: 10vh;
+	margin: 0px;
+	padding: 10px;
+	display:inline;
+	justify-content: space-around;
+	background-color:rgb(1, 7, 123);
+    border-style: double ;
+    border-color: #ed33bf;
+    color: #ed33bf;
+    font-size: larger;
 }
