@@ -1,28 +1,59 @@
-const startButton = document.getElementById('start');
-const questionContainerElement = document.getElementById('question-container');
-const questionElemenmt = document.getElementById('question');
+const startButton = document.getElementById('start')
+const nextButton = document.getElementById('next-button')
+const questionContainerElement = document.getElementById('question-container')
+const questionElement = document.getElementById('question')
 const answerButtonElement = document.getElementById('answer-buttons')
-startButton.addEventListener('click', startGame);
+
+let shuffledQuestions, currentQuestionIndex
+
+startButton.addEventListener('click', startGame)
 
 
-function startGame() {;
-    console.log('Started');
-    startButton.classList.add('hide');
-    currentQuestionIndex = 0;
-    questionContainerElement.classList.remove('hide');
+function startGame() {
+    console.log('Started')
+    startButton.classList.add('hide')
+    shuffledQuestions = questions.sort(() => Math.random() - .5)
+    currentQuestionIndex = 0
+    questionContainerElement.classList.remove('hide')
     setNextQuestion()
-};
-
-function setNextQuestion() {
-};
-
-function showQuestion(question) {
-
 }
 
-function selectAnswer() {
+function setNextQuestion() {
+    resetState()
+    showQuestions(shuffledQuestions[currentQuestionIndex])
+    
+}
 
-};
+function showQuestions(question) {
+    questionElement.innerText = question.question
+    question.answers.forEach(answer => {
+        const button = document.createElement('button')
+        button.innerText = answer.text
+        button.classList.add('button')
+        if (answer.correct) {
+            button.dataset.correct = answer.correct
+        }
+        button.addEventListener('click', selectAnswer)
+        answerButtonElement.appendChild(button)
+    })
+}
+
+function resetState() {
+    nextButton.classList.add ('hide')
+    while (answerButtonElement.firstChild) {
+        answerButtonElement.removeChild
+        (answerButtonElement.firstChild)
+    }
+}
+
+function selectAnswer(e) {
+    const selectedButton = e.target
+    const correct = selectedButton.dataset.correct
+    setStatusClass(document.body, correct)
+    Array.from(answerButtonElement.children).forEach(button => {
+        setStatusClass(button.dataset.correct)
+    })
+}
 
 const questions = [ 
 {
@@ -31,7 +62,7 @@ const questions = [
         {text: 'object-oriented', correct: true},
         {text: 'object-based', correct: false},
         {text: 'Proceduaral', correct: false},
-        {text: 'Noce of the above', correct: false},
+        {text: 'None of the above', correct: false},
     ]
 
 }
