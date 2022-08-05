@@ -1,5 +1,5 @@
 const startButton = document.getElementById('start')
-const nextButton = document.getElementById('next-button')
+const nextButton = document.getElementById('next')
 const questionContainerElement = document.getElementById('question-container')
 const questionElement = document.getElementById('question')
 const answerButtonElement = document.getElementById('answer-buttons')
@@ -12,7 +12,7 @@ startButton.addEventListener('click', startGame)
 function startGame() {
     console.log('Started')
     startButton.classList.add('hide')
-    shuffledQuestions = questions.sort(() => Math.random() - .5)
+    shuffledQuestions = questions.sort(() => Math.random() - 0.5)
     currentQuestionIndex = 0
     questionContainerElement.classList.remove('hide')
     setNextQuestion()
@@ -53,6 +53,21 @@ function selectAnswer(e) {
     Array.from(answerButtonElement.children).forEach(button => {
         setStatusClass(button.dataset.correct)
     })
+}
+
+function setStatusClass(element, correct) {
+    clearStatusClass(element)
+    if (correct) {
+        element.classList.add('correct')
+    } else{
+        element.classList.add('wrong')
+    }
+}
+
+function clearStatusClass(element) {
+    element.classList.remove('correct')
+    element.classList.remove('wrong')
+
 }
 
 const questions = [ 
